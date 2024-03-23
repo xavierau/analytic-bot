@@ -17,7 +17,15 @@ function setIdentifier(value) {
 
 function convertMarkdownToHtml(markdown) {
     const converter = new showdown.Converter({extensions: ['table']})
-    return converter.makeHtml(markdown);
+    const html = converter.makeHtml(markdown);
+
+    const doc = new DOMParser().parseFromString(html, "text/xml");
+
+    doc.querySelectorAll("table").forEach((table) => {
+        table.classList.add("table")
+    })
+
+    return doc.body.outerHTML
 }
 
 function getMessages() {
