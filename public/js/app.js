@@ -127,11 +127,9 @@ function ask(e) {
     scrollToBottom()
     sendMessage(message.value)
         .then((res) => {
-
             messages.push({'role': 'assistant', 'content': res.message})
             insertMessageToContainer(createAssistantMessage(res.message))
         })
-        .then(() => getQueries().then(setQueries))
         .finally(() => scrollToBottom())
 
     return false
