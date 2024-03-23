@@ -113,7 +113,7 @@ function scrollToBottom() {
 
 function init() {
     getMessages()
-        .then((msgs) => messages = msgs)
+        .then((msgs) => messages = msgs || [])
         .then(() => clearConversation())
         .then(() => createMessages())
         .then(() => getQueries().then(setQueries))
