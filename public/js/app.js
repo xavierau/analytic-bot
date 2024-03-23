@@ -145,7 +145,3 @@ function updateSettings(e) {
 }
 
 init()
-
-getUsers()
-    .then(usrs => users = usrs)
-
