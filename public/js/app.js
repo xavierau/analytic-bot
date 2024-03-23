@@ -25,7 +25,9 @@ function convertMarkdownToHtml(markdown) {
         table.classList.add("table")
     })
 
-    console.log(doc, doc.body, doc.body.innerHTML)
+    console.log(doc)
+    console.log(doc.body)
+    console.log(doc.body.innerHTML || "empty")
 
     return doc
 }
