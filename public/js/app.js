@@ -18,19 +18,8 @@ function setIdentifier(value) {
 function convertMarkdownToHtml(markdown) {
     const converter = new showdown.Converter({extensions: ['table']})
     const html = converter.makeHtml(markdown);
-
-    console.log('html', html)
-
-    const doc = new DOMParser().parseFromString(html, "text/xml");
-
-    doc.querySelectorAll("table")
-        .forEach((table) => {
-        table.classList.add("table")
-    })
-
-    console.log('doc', doc.documentElement?.outerHTML || "")
-
-    return doc.documentElement?.outerHTML || ""
+    html.replaceAll("<table>", "<table class='table'>")
+    return html
 }
 
 function getMessages() {
