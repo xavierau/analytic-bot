@@ -19,9 +19,12 @@ function convertMarkdownToHtml(markdown) {
     const converter = new showdown.Converter({extensions: ['table']})
     const html = converter.makeHtml(markdown);
 
+    console.log('html', html)
+
     const doc = new DOMParser().parseFromString(html, "text/xml");
 
-    doc.querySelectorAll("table").forEach((table) => {
+    doc.querySelectorAll("table")
+        .forEach((table) => {
         table.classList.add("table")
     })
 
