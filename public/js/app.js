@@ -18,8 +18,7 @@ function setIdentifier(value) {
 function convertMarkdownToHtml(markdown) {
     const converter = new showdown.Converter({extensions: ['table']})
     let html = converter.makeHtml(markdown);
-    html = html.replaceAll("<table>", "<table class='table'>")
-    return html
+    return html.replaceAll("<table>", "<table class='table'>")
 }
 
 function getMessages() {
