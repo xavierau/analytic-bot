@@ -25,6 +25,8 @@ function convertMarkdownToHtml(markdown) {
         table.classList.add("table")
     })
 
+    console.log('doc', doc.documentElement?.outerHTML || "")
+
     return doc.documentElement?.outerHTML || ""
 }
 
@@ -124,7 +126,6 @@ function init() {
         .then((msgs) => messages = msgs || [])
         .then(() => clearConversation())
         .then(() => createMessages())
-        .then(() => getQueries().then(setQueries))
         .finally(() => scrollToBottom())
 }
 
