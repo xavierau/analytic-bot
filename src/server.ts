@@ -16,7 +16,6 @@ app.get('/', (req, res) => res.send('Hello World from analytic bot!'))
 
 app.get('/api/messages', (req, res) => {
     const identifier = req.header("x-identifier") || "default"
-    console.log('identifier', identifier)
     const memory = new PostgresMemory(identifier)
     memory.getMessages(99, {})
         .then((messages) => res.send(messages))
@@ -70,4 +69,4 @@ app.get('/create_embeddings', (req, res) => {
         })
 })
 
-app.listen(config.appPort, () => console.log(`Example app listening at http://localhost:${config.appPort}`))
+app.listen(config.appPort, () => console.log(`LLM analyst app listening at http://localhost:${config.appPort}`))
