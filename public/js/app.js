@@ -25,7 +25,7 @@ function convertMarkdownToHtml(markdown) {
         table.classList.add("table")
     })
 
-    return doc.body.outerHTML
+    return doc.body.innerHTML
 }
 
 function getMessages() {
