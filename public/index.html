@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="identifier" content="">
+    <title>Conversation</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://getbootstrap.com/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="https://getbootstrap.com/docs/5.0/assets/img/favicons/apple-touch-icon.png"
+          sizes="180x180">
+    <link rel="icon" href="https://getbootstrap.com/docs/5.0/assets/img/favicons/favicon-32x32.png" sizes="32x32"
+          type="image/png">
+    <link rel="icon" href="https://getbootstrap.com/docs/5.0/assets/img/favicons/favicon-16x16.png" sizes="16x16"
+          type="image/png">
+    <link rel="manifest" href="https://getbootstrap.com/docs/5.0/assets/img/favicons/manifest.json">
+    <link rel="mask-icon" href="https://getbootstrap.com/docs/5.0/assets/img/favicons/safari-pinned-tab.svg"
+          color="#7952b3">
+    <link rel="icon" href="https://getbootstrap.com/docs/5.0/assets/img/favicons/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <meta name="theme-color" content="#7952b3">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/dashboard.css" rel="stylesheet">
+
+</head>
+<body>
+<div id="rcr-wrapper">
+    <div id="rcr-anchor"></div>
+</div>
+
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">YOOV</a>
+<!--    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"-->
+<!--            data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"-->
+<!--            aria-label="Toggle navigation">-->
+<!--        <span class="navbar-toggler-icon"></span>-->
+<!--    </button>-->
+<!--    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">-->
+<!--    <div class="navbar-nav">-->
+<!--        <div class="nav-item text-nowrap">-->
+<!--            <a class="nav-link px-3" href="#">Sign out</a>-->
+<!--        </div>-->
+<!--    </div>-->
+</header>
+
+<div class="container-fluid">
+    <div class="row">
+        <main class="col-12">
+            <div class="pt-3 pb-2 mb-3 border-bottom">
+                <div class="d-flex gap-3 flex-row">
+                    <a class="text-dark d-inline-block" style="text-decoration: none" data-bs-toggle="collapse"
+                       href="#overallSetting"
+                       role="button" aria-expanded="false" aria-controls="overallSetting">
+                        <h1 class="h2 d-inline-block">Setting</h1>
+                    </a>
+                </div>
+
+                <div class="collapse " id="overallSetting">
+                    <div class="card m-3 card-body">
+                        <form action="#" onsubmit="updateSettings(event)">
+                            <div class="row g-3 align-items-center">
+                                <div class="col-auto">
+                                    <label for="identifier" class="col-form-label">User Identifier</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text"
+                                           name="identifier"
+                                           id="identifier"
+                                           class="form-control"
+                                           placeholder="default"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <input class="btn btn-primary float-end mt-3" type="submit" value="Update"/>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <h2>Conversations</h2>
+            <div id="conversation-container"></div>
+
+            <form action="#" class="form position-sticky bottom-0" onsubmit="ask(event)">
+                <div class="mb-3">
+                    <div class="input-group mb-3">
+                        <input type="text" name="message" class="form-control" placeholder="Your message">
+                        <button class="btn btn-outline-secondary bg-white" type="submit" id="button-addon2">Send
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </main>
+    </div>
+</div>
+
+
+<template id="user-message-template">
+    <div class="card mb-3 user-message">
+        <div class="row">
+            <div style="width: 80px" class="d-flex justify-content-center align-content-center mt-3">
+                <strong>User</strong>
+            </div>
+
+            <div class="col">
+                <div class="card-body">
+                    this is user message template
+                </div>
+            </div>
+        </div>
+
+    </div>
+</template>
+
+<template id="assistant-message-template">
+    <div class="card mb-3 assistant">
+        <div class="row">
+            <div style="width: 80px" class=" d-flex justify-content-center align-content-center mt-3">
+                <strong>Bot</strong>
+            </div>
+
+            <div class="col">
+                <div class="card-body">
+                    this is assistant message template
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+
+<script src="https://getbootstrap.com/docs/5.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
+        integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/showdown@2.1.0/dist/showdown.min.js"></script>
+<script src="/js/app.js"></script>
+
+
+<scribe-shadow id="crxjs-ext"
+               style="position: fixed; width: 0px; height: 0px; top: 0px; left: 0px; z-index: 2147483647; overflow: visible;"></scribe-shadow>
+</body>
+</html>
