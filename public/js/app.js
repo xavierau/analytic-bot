@@ -16,7 +16,7 @@ function setIdentifier(value) {
 }
 
 function convertMarkdownToHtml(markdown) {
-    const converter = new showdown.Converter()
+    const converter = new showdown.Converter({extensions: ['table']})
     return converter.makeHtml(markdown);
 }
 
