@@ -25,12 +25,7 @@ function convertMarkdownToHtml(markdown) {
         table.classList.add("table")
     })
 
-    console.log(doc)
-    console.log(doc.body)
-    console.log(doc.body?.innerHTML || "empty")
-    console.log(doc.documentElement?.outerHTML || "empty")
-
-    return doc
+    return doc.documentElement?.outerHTML || ""
 }
 
 function getMessages() {
