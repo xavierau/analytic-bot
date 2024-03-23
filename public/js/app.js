@@ -28,6 +28,7 @@ function convertMarkdownToHtml(markdown) {
     console.log(doc)
     console.log(doc.body)
     console.log(doc.body?.innerHTML || "empty")
+    console.log(doc.documentElement?.outerHTML || "empty")
 
     return doc
 }
